@@ -5,6 +5,7 @@
 #include "exchange_card.h"
 #include "player.h"
 #include "big_boss_card.h"
+#include "game_control.h"
 
 using namespace std;
 
@@ -16,19 +17,12 @@ int main() {
     Card card5 = Card("name5", 300, 600);
     Card card6 = Card("name6", 400, 500);
     
-    std::vector<Card> deck = {card, card2, card3, card4, card5, card6, card4, card4, card4};
-
-    std::vector<Card> oppenentDeck = {card4, card4, card, card2, card3, card4, card5};
+    std::vector<Card*> deck = {&card, &card2, &card3, &card4, &card5, &card6, &card4, &card4, &card4};
+    std::vector<Card*> opponentDeck = {&card4, &card4, &card, &card2, &card3, &card4, &card5};
 
     Player player = Player(deck, "John");
-    Player opponent = Player(oppenentDeck, "Alice");
-    player.draw();
+    Player opponent = Player(opponentDeck, "Alice");
 
-    card.effect(player.hand[0], player, opponent);
-    card2.effect(card4, player, opponent);
-
-    cout << opponent.deck.size() << endl;
-    cout << player.deck.size() << endl;
-    
-    player.displayHand();
+    GameControl gameControl = GameControl(deck,opponentDeck,player,opponent);
+    gameControl.start_game(5);
 }

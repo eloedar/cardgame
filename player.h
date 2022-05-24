@@ -11,7 +11,7 @@ public:
      * @brief deck of player
      * 
      */
-    std::vector<Card> deck;
+    std::vector<Card*> deck;
 
     /**
      * @brief name of player
@@ -24,10 +24,10 @@ public:
      * players draw card from deck to hand
      * 
      */
-    std::vector<Card> hand;
+    std::vector<Card*> hand;
 
-    Player(std::vector<Card> &deck, std::string name) : name(name), deck(deck) {
-        this->hand = std::vector<Card>();
+    Player(std::vector<Card*> &deck, std::string name) : name(name), deck(deck) {
+        this->hand = std::vector<Card*>();
         for (int i = 0; i < 5; ++i) {
             this->draw();
         }
@@ -49,7 +49,7 @@ public:
      * @param index index of card
      * @return Card the card
      */
-    Card play(int index);
+    Card & play(int index);
 
     /**
      * @brief display all cards in hand, every card is displayed
