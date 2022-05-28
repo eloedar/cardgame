@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <utility>
 #include <vector>
 
 #include "card.h"
@@ -26,7 +27,7 @@ public:
      */
     std::vector<Card*> hand;
 
-    Player(std::vector<Card*> &deck, std::string name) : name(name), deck(deck) {
+    Player(std::vector<Card*> &deck, std::string name) : name(std::move(name)), deck(deck) {
         this->hand = std::vector<Card*>();
         for (int i = 0; i < 5; ++i) {
             this->draw();

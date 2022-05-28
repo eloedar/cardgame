@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <utility>
 
 // for compilation
 // https://stackoverflow.com/questions/4964482/how-to-create-two-classes-in-c-which-use-each-other-as-data
@@ -30,7 +31,7 @@ public:
      */
     int defense;
 
-    Card(std::string name, int attack, int defense) : name(name), attack(attack), defense(defense) {};
+    Card(std::string name, int attack, int defense) : name(std::move(name)), attack(attack), defense(defense) {};
 
     /**
      * @brief power equals to attack - oppenent card's
@@ -45,9 +46,7 @@ public:
      * Card1.power(Card2) => 75
      * Card2.power(Card1) => 0
      */
-    double power(const Card &opponentCard) {
-        return (double) (this->attack - opponentCard.defense) / 2;
-    }
+    double power(const Card &opponentCard) const ;
 
     /**
      * @brief different card has different effect.
@@ -57,9 +56,7 @@ public:
      * @param player
      * @param opponent
      */
-    virtual void effect(Card &opponentCard, Player &player, Player &opponent) {
-        std::cout << "No effects!" << std::endl;
-    };
+    virtual void effect(Card &opponentCard, Player &player, Player &opponent);
 
     /**
      * @brief format card output
@@ -75,4 +72,5 @@ public:
      * name 100 200
      */
     friend std::ostream &operator<<(std::ostream &os, const Card &card);
+
 };

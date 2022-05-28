@@ -8,17 +8,14 @@
 
 #include "card.h"
 
+#include <utility>
+
 class BigBossCard: public Card{ ;
 
 public:
-    BigBossCard(std::string name, int attack, int defense) : Card(name, attack, defense) {}
+    BigBossCard(std::string name, int attack, int defense) : Card(std::move(name), attack, defense) {}
 
-    void effect(Card &opponentCard, Player &player, Player &opponent) override {
-        int tmp = opponentCard.defense;
-        opponentCard.defense = opponentCard.attack;
-        opponentCard.attack = tmp;
-    }
+    void effect(Card &opponentCard, Player &player, Player &opponent) override;
 };
-
 
 #endif //CARDGAME_BIG_BOSS_CARD_H
