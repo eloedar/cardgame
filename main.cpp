@@ -10,12 +10,13 @@
 using namespace std;
 
 int main() {
-    Card card = ExchangeCard("card", 100, 200);
-    ExchangeCard card2 = ExchangeCard("exchange card", 100, 300);
-    BigBossCard card3 = BigBossCard("name3", 100, 300);
-    Card card4 = Card("name4", 200, 400);
-    Card card5 = Card("name5", 300, 600);
-    Card card6 = Card("name6", 400, 500);
+    Card card = Card("SuperSuperStringCard", 800, 800);
+    Card card1 = Card("JustSoSoCard", 200, 300);
+    ExchangeCard card2 = ExchangeCard("ExchangeCard", 100, 300);
+    BigBossCard card3 = BigBossCard("BigBossCard", 100, 300);
+    Card card4 = Card("VeryStrongCard", 200, 400);
+    Card card5 = Card("SuperStrongCard", 300, 600);
+    Card card6 = Card("AverageStrongCard", 400, 500);
     
     std::vector<Card*> deck = {&card, &card2, &card3, &card4, &card5, &card6, &card4, &card4, &card4};
     std::vector<Card*> opponentDeck = {&card4, &card4, &card, &card2, &card3, &card4, &card5};

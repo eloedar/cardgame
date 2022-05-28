@@ -4,6 +4,8 @@
 
 #include "game_control.h"
 
+int GameControl::turn_count = 0;
+
 void GameControl::start_turn() {
     using namespace std;
     this->player1->draw();
@@ -17,7 +19,7 @@ void GameControl::start_turn() {
     judge(*card2, *card1);
     player1->hand.erase(player1->hand.begin() + pl1);
     player2->hand.erase(player2->hand.begin() + pl2);
-//    turn_count++;
+    turn_count++;
 }
 
 void GameControl::judge(Card &card2, Card &card1) {
@@ -40,23 +42,33 @@ void GameControl::judge(Card &card2, Card &card1) {
 int GameControl::select_card(Player &player) {
     using namespace std;
     cout << player.name << ", your cards are listed below:" << endl;
-    player.displayHand();
+    player.displayIndexedHand();
     int a;
     cout << "Please enter the index of the card you want to draw!" << endl;
-    cin >> a;
-    return a;
+    if ((cin >> a) && (a >= 0) && (a < player.hand.size())) {
+        return a;
+    } else {
+        cout << "Invalid input!" << endl;
+        return select_card(player);
+    }
 }
 
-void GameControl::start_game(int count) {
-    for (int i = 0; i < count; ++i) {
+void GameControl::start_game(int const count) {
+    for (int i = 0; count > turn_count; ++i) {
         start_turn();
         if (player1->hand.empty() || player2->hand.empty()) { break; }
     }
     if (scores_1 > scores_2) {
         std::cout << player2->name << " wins the whole game!" << std::endl;
+        std::cout << player1->name << "'s score is: " << this->scores_1 << std::endl;
+        std::cout << player2->name << "'s score is: " << this->scores_2 << std::endl;
     } else if (scores_1 == scores_2) {
         std::cout << "No one wins! You both equal!" << std::endl;
+        std::cout << player1->name << "'s score is: " << this->scores_1 << std::endl;
+        std::cout << player2->name << "'s score is: " << this->scores_2 << std::endl;
     } else {
         std::cout << player1->name << " wins the whole game!" << std::endl;
+        std::cout << player1->name << "'s score is: " << this->scores_1 << std::endl;
+        std::cout << player2->name << "'s score is: " << this->scores_2 << std::endl;
     }
 }

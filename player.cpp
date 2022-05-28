@@ -22,3 +22,10 @@ void Player::displayHand() {
         cout << *i << endl;
     }
 }
+
+void Player::displayIndexedHand() {
+    using namespace std;
+    for (int i = 0; i < this->hand.size(); i++) {
+        cout << i << ": " << *(this->hand[i]) << endl;
+    }
+}

@@ -63,4 +63,6 @@ public:
      * card3 20 20
      */
     void displayHand();
+
+    void displayIndexedHand();
 };

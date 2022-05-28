@@ -11,7 +11,7 @@ private:
     int scores_2;
     std::vector<Card *> deck1;
     std::vector<Card *> deck2;
-//    static int turn_count;
+    static int turn_count;
 
 public:
     GameControl(std::vector<Card *> &deck1, std::vector<Card *> &deck2, Player &player1, Player &player2) :
@@ -26,6 +26,5 @@ public:
     void judge(Card &card2, Card &card1);
 };
 
-//int GameControl::turn_count = 0;
 
 #endif //CARDGAME_GAME_CONTROL_H
